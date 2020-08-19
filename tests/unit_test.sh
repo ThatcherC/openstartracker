@@ -6,7 +6,7 @@ ESA_TEST=0
 IMG_TEST=0
 
 PYTHON="/usr/bin/python2.7"
-#PYTHON="/usr/bin/python3.5"
+PYTHON="/usr/bin/python3.8"
 
 while getopts ":crei" opt; do
   case $opt in
@@ -83,12 +83,12 @@ if [[ $IMG_TEST == 1 ]]; then
 	KILLPID="$!"
 	sleep 10
 	#make sure we dont crash when given an image w/ no stars
-	echo "rgb.solve_image('$TESTDIR/median_image.png')" | nc 127.0.0.1 8010
+	echo "rgb.solve_image('$TESTDIR/median_image.png')" | nc -w2 127.0.0.1 8010
 	sleep 0.5
 	for i in $TESTDIR/samples/*; do
-		echo "rgb.solve_image('$i')" | nc 127.0.0.1 8010
+		echo "rgb.solve_image('$i')" | nc -w2 127.0.0.1 8010
 		sleep 0.5
-		echo "rgb.solve_image('$i')" | nc 127.0.0.1 8010
+		echo "rgb.solve_image('$i')" | nc -w2 127.0.0.1 8010
 		sleep 0.5
 	done
   #sleep 0.5
