@@ -100,7 +100,7 @@ if __name__ == '__main__':
 		image_name=sys.argv[1]+"/calibration_data/"+basename(image_names[n])+".png"
 		img=np.clip(images[n],a_min=0,a_max=255).astype(np.uint8)
 		cv2.imwrite(image_name,img)
-		solve_cmd="solve-field --skip-solved --cpulimit 60 "+image_name
+		solve_cmd="solve-field --overwrite --skip-solved --cpulimit 60 "+image_name
 		#solve_cmd="solve-field --skip-solved --cpulimit 60 -v "+image_name #verbose
 		print (solve_cmd)
 		system(solve_cmd)
