@@ -1,0 +1,5 @@
+# keep this (empty) directory in tracking so that it can be filled
+# by unit_test.py. no need to track that program's outputs though
+# ignore everything except .gitignore
+*
+!.gitignore
