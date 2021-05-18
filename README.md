@@ -64,6 +64,27 @@ and create a command alias called `dstart` that can be run to start the Docker e
 Any time you make a change to the code in this repo, you'll want to re-run the `source setup.sh` command so that your changes are
 included in the Docker build.
 
+### Run on example imagery:
+You can use the included `science_cam_may8_0.05sec_gain40` images to test out the calibration process:
+
+```
+cd tests/
+./unit_test.sh -crei science_cam_may8_0.05sec_gain40/
+```
+
+This command will **c**alibrate your image sensor, **r** regenerate the test data, run an **E**SA test, and finally run the **i**mage test where images are fed to the calibrated star tracker program to produce an attitude fix.
+
+The usage message for `unit_test.py` is here:
+```
+./unit_test.sh -h
+Usage: ./unit_test.sh [options] testdir [cmd]
+
+	-c	Calibrate based on images in testdir/samples/
+	-r	Regenerate ESA test
+	-e	Run ESA test
+	-i	Run image test
+```
+
 ### To calibrate a new camera:
 1. Create directories for you camera's imagery:
 ~~~~
@@ -77,7 +98,7 @@ mkdir yourcamera/calibration_data
 4. (if using docker, run `dstart` to enter the Docker environment)
 5. Run 
   ```
-  cd test
+  cd tests/
   ./unit_test.sh -crei yourcamera
   ```
   to recalibrate and test
