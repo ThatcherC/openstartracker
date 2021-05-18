@@ -68,6 +68,7 @@ included in the Docker build.
 You can use the included `science_cam_may8_0.05sec_gain40` images to test out the calibration process:
 
 ```
+# if using docker, run `source setup.sh` and then `dstart` to enter the Docker shell
 cd tests/
 ./unit_test.sh -crei science_cam_may8_0.05sec_gain40/
 ```
@@ -88,12 +89,12 @@ Usage: ./unit_test.sh [options] testdir [cmd]
 ### To calibrate a new camera:
 1. Create directories for you camera's imagery:
 ~~~~
-cd openstartracker/
+cd openstartracker/tests/
 mkdir yourcamera
 mkdir yourcamera/samples
 mkdir yourcamera/calibration_data
 ~~~~
-2. Add 3-10 star images of different parts of the sky taken with your camera to `yourcamera/samples`
+2. Add 3-10 star images of different parts of the sky taken with your camera to `tests/yourcamera/samples`
 3. Edit `APERTURE` and `EXPOSURE_TIME` in `calibrate.py` (you want to take images with the lowest exposure time that consistently solves)
 4. (if using docker, run `dstart` to enter the Docker environment)
 5. Run 
@@ -101,7 +102,7 @@ mkdir yourcamera/calibration_data
   cd tests/
   ./unit_test.sh -crei yourcamera
   ```
-  to recalibrate and test
+  to calibrate and test
 
 The ESA test should have a score of >70. If its worse than this, play around with exposure time (50ms is a good starting point)
 
